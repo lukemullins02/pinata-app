@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Title: Recipe Storage
 
-## Getting Started
+Description: A next.js full stack app that takes in pdfs of recipes and images of those recipes and uploads them to IPFS database where they will be permanently stored. These recipes and images can be retrieved by using the CID generated from sending an item to the database. When an item is sent to the database, the app prints out the CID for said specific item.
 
-First, run the development server:
+Basic Goals: Upload data to Pinata Database and retrieve from it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+What we leared: We learned alot about dealing with an IPFS database. The uniqueness of the database due to it being decentralized. Which allows stuff to be stored on it forever without fear of deletion. We also grew in basic knowledge of crud operators such as POST and GET.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Stack: Next.js, pinata, and tailwind.css
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Setup and run app:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create .env.local file in the root directory and copy and paste the following inforamtion:
 
-## Learn More
+PINATA_JWT= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwODJhYTQ4Zi1jYzc2LTQ1MjktOWVjMC0yNTY4MzgyYTk0ODYiLCJlbWFpbCI6Imx1a2VqbXVsbGluc0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYzhiYWI5YzZmOTIzZTc4NWIyMjgiLCJzY29wZWRLZXlTZWNyZXQiOiIzNTE2MzAxODczNDdkODQ2MDljNzc2YWFiZWU1Y2Q4ZTIyZTQ5NTBiM2NhZDQ5YWYzMDk3MWYxOWNhOTYzMWJhIiwiZXhwIjoxNzcwNTU3MjEwfQ.LZXxNGaybthjWtQ6VWNF9jWuOVRVcbWmKhjMtw3XV9U"
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_GATEWAY_URL= "brown-secure-emu-26.mypinata.cloud"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install the following:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm -i pinata
 
-## Deploy on Vercel
+npm install - -save-dev @types/react
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use npm run dev command to start up website
