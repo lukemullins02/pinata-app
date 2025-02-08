@@ -36,7 +36,13 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-slate-500 flex flex-col justify-center items-center p-6">
+    <main className="w-full min-h-screen bg-emerald-600 flex flex-col justify-center items-center p-6 relative">
+      <h1 className="absolute mt-4 top-6 text-white text-4xl font-bold">
+        Welcome to Recipe Storage!
+      </h1>
+      <h1 className="mb-8 text-white text-3xl font-bold">
+        Upload recipes here
+      </h1>
       <input
         type="file"
         className="px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
