@@ -36,6 +36,7 @@ export default function Home() {
       });
       const ipfsUrl = await uploadRequest.json();
       setUrl(ipfsUrl);
+
       setUploading(false);
     } catch (e) {
       console.log(e);
@@ -72,9 +73,7 @@ export default function Home() {
       <h1 className="absolute mt-4 top-6 text-white text-4xl font-bold">
         Welcome to Recipe Storage!
       </h1>
-      <h1 className="mb-8 text-white text-3xl font-bold">
-        Upload recipes here
-      </h1>
+
       <input
         type="file"
         className="px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
@@ -97,11 +96,14 @@ export default function Home() {
             alt="Uploaded"
             className="w-64 h-64 object-cover rounded-lg border border-gray-300 shadow-md"
           />
-          <p>Success!</p>
+          <p>{url.substring(48)}</p>
         </div>
       )}
 
-      <input id="userinput" className="px-4 py-2 mt-4 border rounded" />
+      <input
+        id="userinput"
+        className="px-4 py-2 mt-4 text-black border rounded"
+      />
       <button
         className="mt-2 px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
         onClick={userInput}
@@ -110,8 +112,11 @@ export default function Home() {
       </button>
 
       {input && (
-        <a href={`https://brown-secure-emu-26.mypinata.cloud/ipfs/${input}`}>
-          Link
+        <a
+          href={`https://brown-secure-emu-26.mypinata.cloud/ipfs/${input}`}
+          target="_blank"
+        >
+          Link for CID: {input}
         </a>
       )}
     </main>
