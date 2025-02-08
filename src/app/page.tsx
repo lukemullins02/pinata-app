@@ -1,12 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { PinataSDK } from "pinata-web3";
+
+const pinata = new PinataSDK({
+  pinataJwt: process.env.PINATA_JWT!,
+  pinataGateway: "brown-secure-emu-26.mypinata.cloud",
+});
+
+const js = "";
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState("");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [input, setInput] = useState(""); // State to capture the input value
 
   // File types to allow (PDF, PNG, JPEG, JPG)
   const allowedTypes = ["application/pdf", "image/png", "image/jpeg"];
@@ -44,9 +53,18 @@ export default function Home() {
         setError(null); // Clear any previous errors
       } else {
         setFile(null);
-        setError("Invalid file type. Only PDF, PNG, JPEG, and JPG are allowed.");
+        setError(
+          "Invalid file type. Only PDF, PNG, JPEG, and JPG are allowed."
+        );
       }
     }
+  };
+
+  const userInput = () => {
+    const userInputValue = (
+      document.getElementById("userinput") as HTMLInputElement
+    )?.value;
+    setInput(userInputValue);
   };
 
   return (
@@ -57,18 +75,13 @@ export default function Home() {
       <h1 className="mb-8 text-white text-3xl font-bold">
         Upload recipes here
       </h1>
-
-      {/* File input with accept attribute to restrict file types */}
       <input
         type="file"
         className="px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
         onChange={handleChange}
         accept="application/pdf, image/png, image/jpeg" // Restrict file types here
       />
-
-      {/* Display error message if invalid file type is selected */}
       {error && <p className="text-red-500 mt-2">{error}</p>}
-
       <button
         className="mt-4 px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
         type="button"
@@ -77,7 +90,6 @@ export default function Home() {
       >
         {uploading ? "Uploading..." : "Upload"}
       </button>
-
       {url && (
         <div className="mt-6">
           <img
@@ -85,7 +97,22 @@ export default function Home() {
             alt="Uploaded"
             className="w-64 h-64 object-cover rounded-lg border border-gray-300 shadow-md"
           />
+          <p>Success!</p>
         </div>
+      )}
+
+      <input id="userinput" className="px-4 py-2 mt-4 border rounded" />
+      <button
+        className="mt-2 px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
+        onClick={userInput}
+      >
+        Return CID File
+      </button>
+
+      {input && (
+        <a href={`https://brown-secure-emu-26.mypinata.cloud/ipfs/${input}`}>
+          Link
+        </a>
       )}
     </main>
   );
