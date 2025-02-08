@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState("");
@@ -62,57 +61,65 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-cover bg-center bg-[url(/recipeBook3.jpg)] flex flex-col justify-center items-center p-6 relative">
-      <div className="bg-black bg-opacity-65 rounded px-20 py-20">
-        <div className="flex flex-col justify-center items-center ">
-          <h1 className="absolute mt-4 top-6 text-white bg-black rounded bg-opacity-65 py-2 px-4 text-4xl font-bold">
-            Welcome to Recipe Storage!
-          </h1>
+    <main className="w-full min-h-screen bg-cover bg-center bg-[url('/recipeBook.jpg')] flex flex-col justify-center items-center p-6 relative">
+      <div className="w-4/5 h-4/5 grid grid-cols-2 gap-8 bg-white  p-10 rounded-lg shadow-lg">
+        <div className="flex flex-col justify-center items-center space-y-6">
+          <h1 className="text-4xl font-bold text-amber-600">Recipe Storage</h1>
           <input
             type="file"
-            className="px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
+            className="w-72 px-6 py-3 bg-white text-black text-lg font-semibold rounded-lg shadow-md border border-gray-300 transition file:bg-amber-600 file:border-none file:text-white file:px-4 file:py-2 file:rounded-lg file:cursor-pointer file:shadow-md file:hover:bg-amber-700"
             onChange={handleChange}
-            accept="application/pdf, image/png, image/jpeg" // Restrict file types here
+            accept="application/pdf, image/png, image/jpeg"
           />
-          {error && <p className="text-red-500 mt-2">{error}</p>}
+
+          {error && <p className="text-red-500">{error}</p>}
+
           <button
-            className="mt-4 px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
+            className="w-72 px-6 py-3 bg-amber-600 text-white text-lg font-semibold rounded shadow-md hover:bg-amber-700 transition"
             type="button"
             disabled={uploading}
             onClick={uploadFile}
           >
             {uploading ? "Uploading..." : "Upload"}
           </button>
+          <input
+            id="userinput"
+            className="w-72 px-4 py-3 text-black border border-gray-300 rounded shadow-md"
+            placeholder="Enter CID"
+          />
+          <button
+            className="w-72 px-6 py-3 bg-amber-600 text-white text-lg font-semibold rounded shadow-md hover:bg-amber-700 transition"
+            onClick={userInput}
+          >
+            Return CID File
+          </button>
+        </div>
+
+        <div className="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow-md">
           {url && (
-            <div className="mt-6">
+            <div className="flex flex-col items-center">
               <img
                 src={url}
                 alt="Uploaded"
                 className="w-64 h-64 object-cover rounded-lg border border-gray-300 shadow-md"
               />
-              <p>{url.substring(48)}</p>
+              <div className="flex items-start mt-2">
+                <p className="text-gray-700">{url.substring(48)}</p>
+              </div>
             </div>
           )}
-          </div>
-          <div className="flex flex-col items-center justify-center">
-          <input
-            id="userinput"
-            className="px-4 py-2 mt-4 text-black border rounded"
-          />
-          <button
-            className="mt-2 px-6 py-2 bg-white text-black text-xl font-semibold rounded shadow-lg hover:bg-gray-100 transition-transform transform"
-            onClick={userInput}
-          >
-            Return CID File
-          </button>
-        
+
           {input && (
-            <a
-              href={`https://brown-secure-emu-26.mypinata.cloud/ipfs/${input}`}
-              target="_blank"
-            >
-              Link for CID: {input}
-            </a>
+            <div className="mt-4">
+              <span className="text-gray-700 font-semibold">Link to CID: </span>
+              <a
+                href={`https://brown-secure-emu-26.mypinata.cloud/ipfs/${input}`}
+                target="_blank"
+                className="text-blue-600 underline"
+              >
+                {input}
+              </a>
+            </div>
           )}
         </div>
       </div>
