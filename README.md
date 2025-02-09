@@ -10,7 +10,7 @@ Problems faced: We had to learn about a databse that none of us had experience w
 
 Stack: Next.js, pinata, and tailwind.css
 
-Tools: pinata API
+Tools: pinata API, GitHub, git
 
 Setup and run app:
 
