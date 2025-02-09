@@ -6,7 +6,11 @@ Basic Goals: Upload data to Pinata Database and retrieve from it.
 
 What we leared: We learned alot about dealing with an IPFS database. The uniqueness of the database due to it being decentralized. Which allows stuff to be stored on it forever without fear of deletion. We also grew in basic knowledge of crud operators such as POST and GET.
 
+Problems faced: We had to learn about a databse that none of us had experience with. We did this by going through documentation and talking to the pinata devs. This helped us integrate the API and get our databse up and running.
+
 Stack: Next.js, pinata, and tailwind.css
+
+Tools: pinata API
 
 Setup and run app:
 
